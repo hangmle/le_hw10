@@ -1,0 +1,14 @@
+<%- include("_header") -%>
+
+<h1>List of books</h1>
+
+<ul>
+  <% for (const book of model) { %>
+    <li>
+      <%= book.title %>
+      <em>(<%= book.author %>)</em>
+    </li>
+  <% } %>
+</ul>
+
+<%- include("_footer") -%>
