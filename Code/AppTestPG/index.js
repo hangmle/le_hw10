@@ -1,20 +1,30 @@
+require('dotenv').config();
+
 const express = require("express");
 const path = require("path");
-// Declare the node-postgres module
-const { Pool } = require("pg");
 
 // Creating the Express server
 const app = express();
 
-// Connection to the PostgreSQL database
+// // Connection to the PostgreSQL database
+// const pool = new Pool({
+//   user: "mnipatvr",
+//   host: "heffalump.db.elephantsql.com",
+//   database: "mnipatvr",
+//   password: "haujzJgEr4WW7liI9XLO2dutCHh_K3Rz",
+//   port: 5432
+// });
+// console.log("Successful connection to the database");
+
+// Add database package and connection string (can remove ssl)
+// Declare the node-postgres module
+const { Pool } = require('pg');
 const pool = new Pool({
-  user: "mnipatvr",
-  host: "heffalump.db.elephantsql.com",
-  database: "mnipatvr",
-  password: "haujzJgEr4WW7liI9XLO2dutCHh_K3Rz",
-  port: 5432
+  connectionString: process.env.CRUNCHY_DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
-console.log("Successful connection to the database");
 
 
 // Creating a "Books" table
